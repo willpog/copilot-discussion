@@ -27,7 +27,7 @@ itself cannot be verified by conventional means.
 %%
 
 Copilot is a RV framework for specifying and generating monitors for C programs
-that is embedded into the functional programming language Haskell
+that are embedded into the functional programming language Haskell
 \cite{PeytonJones02}.
 %
  A working knowledge of Haskell is not necessary to use Copilot at a basic
@@ -79,15 +79,17 @@ agree on a shared global clock.
 
 \subsection{Installation} \label{sec:install}
 
-Before downloading the Copilot framework, you must first install an
+Before downloading the \href{https://github.com/Copilot-Language}{Copilot framework}, you must first install an
 up-to-date version of GHC (the minimal required version is 8.6.4).
 %
 
-\noindent Copilot compiles to C code, therefor you must install a C compiler such as GCC (\url{https://gcc.gnu.org/install/}). After having installed the Haskell Platform and C compiler, Copilot can be downloaded and
-installed in the following two ways:
+\noindent Copilot compiles to C code, therefor you must install a C compiler
+such as GCC (\url{https://gcc.gnu.org/install/}). After having installed the
+\href{https://www.haskell.org/}{Haskell Platform} and C compiler, Copilot can
+be downloaded and installed in the following way:
 
 \begin{itemize}
-\item \textbf{Hackage (Preferred Method): } Copilot is available from
+\item \textbf{Hackage: } Copilot is available from
 \href{https://hackage.haskell.org/package/copilot-3.16#table-of-contents}{Hackage},
 and the latest version can be installed easily:
 \begin{code}
@@ -112,8 +114,8 @@ clock-library, a linear temporal logic framework, a voting library, and a regula
 expression framework.
 \end{itemize}
 
-Many of the examples in this paper can be found at
-\url{https://github.com/Copilot-Language/Copilot/tree/master/Examples}.
+All of the examples in this paper can be found at
+\url{https://github.com/Copilot-Language/copilot-discussion/tree/master/TutorialAndDevGuide/Tutorial/Examples}
 
 \subsection{Sampling} \label{sampling}
  The idea of sampling representative data from a large set of data  is well
@@ -168,7 +170,7 @@ of which are faults to be reported.
 When deciding whether to use Copilot to monitor systems that are not hard
 real-time, the user must determine if sampling is suitable to capture the
 errors and faults of interest in the  SUO. In many cyber-physical systems, the
-trace being monitored is coming from sensors measuring physical data such as
+trace being monitored comes from sensors measuring physical attributes such as
 GPS coordinates, air speed, and actuation signals.
 %
  These continuous signals do not change abruptly so as long as it is sampled at

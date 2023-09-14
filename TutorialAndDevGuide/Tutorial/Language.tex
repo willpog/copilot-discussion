@@ -191,7 +191,7 @@ Copilot specifications must be \emph{causal}, informally meaning that stream
 values cannot depend on future values.
 %
 Our example \texttt{Causal.hs} in the ./Examples directory shows the use of
-{\tt drop} and {\tt ++} by defining a Fibonachi series and then creates a
+{\tt drop} and {\tt ++} by defining a Fibonacci series and then creates a
 leading and lagging stream:
 %
 \lstinputlisting[language = Copilot, frame = single ]{Examples/Causal.hs}
@@ -213,14 +213,20 @@ accelerating or the rate of drain on a battery.
 %
 If you would like more practice with the Copilot language, try adding in an
 observer that shows how much change there was between the leading and the
-lagging stream for our Fibonachi example.
+lagging stream for our Fibonacci example.
 %
 \subsection{Filtering} \label{sec:filter}
 
-Filtering is useful when utilizing stream data becasue occationally the data
-brought in by the sensors will have errors. We have made some example filters
+Filtering is useful when processing stream data because occasionally the data
+brought in by the sensors will have errors. We have adapted some example filters
 from Introduction To Digital Filters \cite{Tyson2013} to demonstrate how to create the filters in the Copilot
 language.
+\begin{description}
+ \item[Difference Filter] Shows the change in value from the previous signal.
+ \item[Gain Filter]  x \textgreater{} 1 makes the filter an amplifier, while 0 \textless{} x \textless{} 1 makes it an attenuator x \textless{} 0 corresponds to an inverting amplifier. 
+ \item[Two Term Average] Simple type of low pass filter as it tends to smooth out high-frequency variations in a signal.
+ \item[Central Difference] Half the change of the previous two sampling intervals. 
+\end{description} 
 %
 \lstinputlisting[language = Copilot, frame = single, numbers = left]{Examples/Filters.hs}
 %
@@ -228,12 +234,12 @@ language.
 \begin{description}
   \item[Line 1-3] Copilot language standard include and remove 
   items defined in the Copilot library from the prelude.
-  \item[Line 5-6] Create a Fibonachi stream that we demonstrated in the last section.
-  \item[Line 8-9] Delaying the Fibonachi stream by one value.
-  \item[Lines 11-12] Difference filter shows the change from the previous signal. 
-  \item[Lines 14-15] Gain filter: x > 1 makes the filter an amplifier, while 0 < x < 1 makes it an attenuator x < 0 corresponds to an inverting amplifier. 
-  \item[Lines 17-18] Two term average filter is a simple type of low pass filter as it tends to smooth out high-frequency variations in a signal 
-  \item[Lines 20-21] Central difference filter is half the change of the previous two signals. 
+  \item[Line 5-6] Create a Fibonacci stream that we demonstrated in the last section.
+  \item[Line 8-9] Delaying the Fibonacci stream by one value.
+  \item[Lines 11-12] Difference filter outputs the value of the Fibonacci stream subtracted by the delayed Fiboncahi stream. 
+  \item[Lines 14-15] Gain filter outputs the value of the Fibonacci stream and multiplies it by a constant.
+  \item[Lines 17-18] Two term average filter outputs the average of the Fibonacci stream subtracted by the delayed Fibonachi stream. 
+  \item[Lines 20-21] Central difference filter outputs the average of the Fibonacci stream subtracted by delaying the delayed Fibonachi stream. 
   \item[Lines 23-42] Observers to show how the filters functionality and how they operate on the stream. 
 
 \end{description}
@@ -254,8 +260,14 @@ as inputs.
 %
 Whenever the input is true the internal state is reversed.
 %
+In Copilot we are able to do this using the {\tt mux} function.
+%
+The {\tt mux} works as a ternary operator stating that if the first parameter is true output the second parameter, but if the first parameter is false output the third parameter.
+%
+In our specification shown below, we switch the state of the z stream when the x stream is true. 
+%
 The operational behavior and the implementation of the latch is shown in the
-./Examples directory with Specification {\tt Latch.hs}.
+./Examples directory with specification {\tt Latch.hs}.
 
 \begin{center}
 \begin{minipage}{0.25\linewidth}
@@ -331,8 +343,8 @@ We have started the specification for you in the ./Examples directory.
 
 \subsection{Structs}
 When monitoring embedded systems the data that needs to be observed is often in a struct.
-Structs require some special attention in Copilot, as we cannot magically
-import the definition of the struct in Copilot. In this section we discuss the
+Structs require special attention in Copilot, as we cannot magically
+import the definition of the struct in Copilot. In this section, we discuss the
 steps that need to be taken by following the code of \texttt{Struct.hs} in the
 \texttt{Examples} directory of the Copilot distribution, or the repository
 \footnote{\url{https://github.com/Copilot-Language/Copilot/blob/master/Examples/Struct.hs}}.
@@ -344,7 +356,7 @@ struct vec {
 	float y;
 };
 \end{lstlisting}
-For us to be able to use this vector inside Copilot, we need to follow a number
+In order to use this vector inside Copilot, we need to follow a number
 of steps:
 \begin{enumerate}
   \item Enable \texttt{DataKinds} compiler extension.
@@ -365,7 +377,7 @@ by putting:
 {-# LANGUAGE DataKinds #-}
 \end{lstlisting}
 at the top of our specification file. This allows us to define \emph{kinds},
-which are the types of types. Our datatype needs to carry the names of the
+which are types of types. Our datatype needs to carry the names of the
 fields in C as well. Using the \texttt{DataKinds} extension we are able to
 write the names of the fields as part of our types.
 
@@ -597,7 +609,7 @@ Just like regular variables, arrays can be sampled as well. Copilot treats
 arrays the same way it treats scalars. 
 \begin{example}
 \label{exmp:pitot}
-Lets take the example where we
+Let's take the example where we
 have the readouts of four pitot tubes, giving us the measured airspeed:
 \begin{code}[frame=single]
 /* Array containing readouts of 4 pitot tubes. */

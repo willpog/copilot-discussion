@@ -31,7 +31,7 @@ for you to follow along. \texttt{Spec.hs} is the following Copilot program:
   included you will get an \texttt{Ambiguous Occurrence} error. 
   \item[Line 5-12] Here we define data streams as input and output data streams. We
   go over defining functions as streams in Section 3 of this tutorial. 
-  \item[Line 14-16] Here {\tt nats} is the stream of natural numbers, and {\tt
+  \item[Line 14-16] Here {\tt nats} is a stream of natural numbers, and {\tt
   evenNumber} and {\tt oddNumber} are the guard functions that take a stream and
   return whether the point-wise values are even or odd, respectively. The lists
   at the end of the trigger represent the values the trigger will output when the
@@ -49,7 +49,7 @@ ghci >
 \end{lstlisting}
 %
 This launches \texttt{ghci}, the Haskell interpreter, with \texttt{Spec.hs}
-loaded. It provides us with a prompt, recognizable by the \texttt{>} sign. Lets
+loaded. It provides us with a prompt, recognizable by the \texttt{>} sign. Let's
 assume that our file contains one specification, called \texttt{spec}. We can
 interpret this using the \texttt{interpret}-function:
 \begin{lstlisting}[language = Copilot]
