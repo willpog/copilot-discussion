@@ -21,3 +21,5 @@ aMajorityPure' cnt (x:xs) can =
     cnt' = if x == can then cnt+1 else cnt
   in
     aMajorityPure' cnt' xs can
+
+

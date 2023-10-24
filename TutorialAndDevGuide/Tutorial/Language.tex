@@ -258,7 +258,14 @@ with a single input and a boolean state.
 A latch is a way of simulating memory in circuits by feeding back output gates
 as inputs.
 %
-Whenever the input is true the internal state is reversed.
+Whenever the input is true the internal state is reversed 
+%
+\begin{center}
+${y}_{i}=\begin{cases}
+\neg{y}_{i-1} \text{ if } {x}_{i} = True\\
+{y}_{i-1} \text{ if } {x}_{i} = False
+\end{cases}$
+\end{center} 
 %
 In Copilot we are able to do this using the {\tt mux} function.
 %
@@ -311,6 +318,14 @@ y}, but if {\tt x} is false then return {\tt z}.
 The input {\tt inc} increments the counter and the input {\tt reset} resets the
 counter.
 %
+\begin{center}
+${cnt}_{i}=\begin{cases}
+{cnt}_{i} & \text{ if } {inc} = False \vee {reset} = False \\
+0 & \text{ if } {reset} = True\\
+{cnt}_{i} + 1 & \text { if } {inc} = True \vee {reset} = False
+\end{cases}$
+\end{center} 
+%
 The internal state of the counter, {\tt cnt}, represents the value of the
 counter and is initially set to zero. 
 %
@@ -322,11 +337,11 @@ table below.
 \begin{tabular}{c|c||c}
 $\mathtt{inc}_i$: & $\mathtt{reset}_i$: & $\mathtt{cnt}_i$:\\
 \hline
-$F$ & $F$ & $\mathtt{cnt}_{i-1}$ \\
+$F$ & $F$ & $\mathtt{cnt}_{i}$ \\
 \hline
 $*$ & $T$ & $0$ \\
 \hline
-$T$ & $F$ & $\mathtt{cnt}_{i-1}$\\
+$T$ & $F$ & $\mathtt{cnt}_{i}+1$\\
 \hline
 \end{tabular}
 \end{minipage}
