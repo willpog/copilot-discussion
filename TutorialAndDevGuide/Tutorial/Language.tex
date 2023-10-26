@@ -320,9 +320,9 @@ counter.
 %
 \begin{center}
 ${cnt}_{i}=\begin{cases}
-{cnt}_{i} & \text{ if } {inc} = False \vee {reset} = False \\
+{cnt}_{i-1} & \text{ if } {inc} = False \vee {reset} = False \\
 0 & \text{ if } {reset} = True\\
-{cnt}_{i} + 1 & \text { if } {inc} = True \vee {reset} = False
+{cnt}_{i-1} + 1 & \text { if } {inc} = True \vee {reset} = False
 \end{cases}$
 \end{center} 
 %

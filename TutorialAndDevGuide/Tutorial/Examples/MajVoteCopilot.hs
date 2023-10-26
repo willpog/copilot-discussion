@@ -24,7 +24,7 @@ vote = do
   where
     maj = majority inputs
 
-    -- 26 input streams to vote on
+    -- 4 input streams to vote on
     inputs :: [Stream Bool]
     inputs = [ a, b, c, d]
 
