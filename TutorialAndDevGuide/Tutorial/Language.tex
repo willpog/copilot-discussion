@@ -222,10 +222,10 @@ brought in by the sensors will have errors. We have adapted some example filters
 from Introduction To Digital Filters \cite{Tyson2013} to demonstrate how to create the filters in the Copilot
 language.
 \begin{description}
- \item[Difference Filter] Shows the change in value from the previous signal.
- \item[Gain Filter]  x \textgreater{} 1 makes the filter an amplifier, while 0 \textless{} x \textless{} 1 makes it an attenuator x \textless{} 0 corresponds to an inverting amplifier. 
- \item[Two Term Average] Simple type of low pass filter as it tends to smooth out high-frequency variations in a signal.
- \item[Central Difference] Half the change of the previous two sampling intervals. 
+ \item[Difference Filter:] Shows the change in value from the previous signal.
+ \item[Gain Filter:]  Variable {\tt x} changes how the filter shows the data. {\tt x} \textgreater{} 1 makes the filter an amplifier, while 0 \textless{} {\tt x} \textless{} 1 makes it an attenuator {\tt x} \textless{} 0 corresponds to an inverting amplifier. 
+ \item[Two Term Average:] Simple type of low pass filter as it tends to smooth out high-frequency variations in a signal.
+ \item[Central Difference:] Half the change of the previous two sampling intervals. 
 \end{description} 
 %
 \lstinputlisting[language = Copilot, frame = single, numbers = left]{Examples/Filters.hs}
@@ -320,9 +320,9 @@ counter.
 %
 \begin{center}
 ${cnt}_{i}=\begin{cases}
-{cnt}_{i-1} & \text{ if } {inc} = False \vee {reset} = False \\
+{cnt}_{i-1} & \text{ if } {inc} = False \wedge {reset} = False \\
 0 & \text{ if } {reset} = True\\
-{cnt}_{i-1} + 1 & \text { if } {inc} = True \vee {reset} = False
+{cnt}_{i-1} + 1 & \text { if } {inc} = True \wedge {reset} = False
 \end{cases}$
 \end{center} 
 %
