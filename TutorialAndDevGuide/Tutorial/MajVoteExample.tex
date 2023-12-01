@@ -16,7 +16,7 @@ the problem in linear time and constant memory. It does so in two passes: The
 first pass chooses a candidate; and the second pass asserts that the
 found candidate indeed holds a majority.
 
-The algorithm for the first pass involves the sequence of elements we are interpreting,
+The algorithm for the first pass involves the sequence of elements given as an input,
 a single element that represents the current majority, and a counter,
 which is initially set to zero. The algorithm is as follows:
 \begin{itemize}
@@ -50,10 +50,8 @@ When implementing the majority vote algorithm for Copilot, we can use reuse
 almost all of the code from the Haskell implementation. However, as functions
 in Copilot are macros that are expanded at compile time, care must
 be taken in order to avoid an explosion in the code size. Hence, instead of
-using Haskell's built-in \emph{let}-blocks, we use explicit sharing, as
-described in Section~\ref{sec:explicit_sharing}. The Copilot implementations
-of the first and the second pass are given in Figure \ref{fig:majority} and
-Figure \ref{fig:amajority} respectively. Comparing the Haskell implementation
+using Haskell's built-in \emph{let}-blocks, we use explicit sharing. The Copilot implementations
+of the first and the second pass as shown above. Comparing the Haskell implementation
 with the Copilot implementation, we see that the code is almost identical,
 except for the type signatures and the explicit sharing annotations.
 
