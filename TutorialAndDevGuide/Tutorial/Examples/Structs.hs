@@ -26,7 +26,7 @@ vecs = [ Vec (Field 1) (Field 2)
        , Vec (Field 12) (Field 8)] ++ vecs
 
 
--- Trigger that always executes, splits the vec into seperate args.
+-- Trigger that always executes, splits the vec into separate args.
 spec = do
   observer "split x" (vecs # x) 
   observer "split y" (vecs # y)

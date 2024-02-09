@@ -20,7 +20,7 @@ The \emph{Simplex Architecture}~\cite{simplex} provides a model architectural
 pattern for RV, where a monitor checks that the executing SUO satisfies a
 specification and, if the property is violated, the RV system will switch
 control to a more conservative component that can be assured using conventional
-means that \emph{steers} the system into a safe state.
+means that  will \emph{steer} the system into a safe state.
 %
 \emph{High-assurance} RV provides an assured level of safety even when the SUO
 itself cannot be verified by conventional means.
@@ -70,8 +70,7 @@ time and memory usage.
 as avionics, medical equipment, and nuclear power plants; hence, occasional
 dropouts in the response time or crashes are not tolerated.
 
-A distributed system is a system that is layered out on multiple pieces of
-hardware.
+A distributed system is comprised of cooperating  components executing on physically distinct computing hardware elements.
 %
 The distributed systems we consider are all synchronized, i.e., all components
 agree on a shared global clock.
@@ -83,13 +82,11 @@ Before downloading the \href{https://github.com/Copilot-Language}{Copilot framew
 up-to-date version of GHC (the minimal required version is 8.6.4).
 %
 
-\noindent Copilot compiles to C code, therefor you must install a C compiler
-such as GCC (\url{https://gcc.gnu.org/install/}). After having installed the
-\href{https://www.haskell.org/}{Haskell Platform} and C compiler, Copilot can
+\noindent Copilot compiles to C code, therefore you must install a C compiler. After having installed Haskell and a C compiler, Copilot can
 be downloaded and installed in the following way:
 
 \begin{itemize}
-\item \textbf{Hackage: } Copilot is available from
+\item Copilot is available from
 \href{https://hackage.haskell.org/package/copilot-3.16#table-of-contents}{Hackage},
 and the latest version can be installed easily:
 \begin{code}
@@ -127,8 +124,8 @@ physical sound wave.
 %
  The fidelity of the recording is dependent on the sampling rate.
 %
- Sampling a state variable of an executing program is similar, but variables
-are rarely continuous signals so they lack the nice properties of continuity.
+ Sampling a state variable of an executing program is similar, however, program state variables
+lack the nice properties of continuity.
 %
 Monitoring based on sampling state-variables has historically been disregarded
 as a runtime monitoring approach, for good reason: without the assumption of

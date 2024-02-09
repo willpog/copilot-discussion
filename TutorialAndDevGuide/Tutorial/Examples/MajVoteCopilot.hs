@@ -9,7 +9,7 @@ nums = [1] ++ nums + 1
 
 vote :: Spec
 vote = do
-  -- majority selects element with the biggest occurance.
+  -- majority selects an element that occurs the most times in input.
   trigger "maj"  true [arg maj]
 
   -- aMajority checks if the selected element has a majority.

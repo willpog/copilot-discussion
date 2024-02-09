@@ -28,13 +28,13 @@ $s_{fib} = \{0, 1, 1, 2, 3, 5, 8, 13, 21, \dots \}$
 \noindent We denote the $n$th value of the stream $s$ as $s(n)$, and the first
 value in a sequence $s$ as $s(0)$.
 %
-For example, for $s_{fib}$ we have that $s_{fib}(0) = 0$,
+For example, for $s_{fib}$ the sequence is $s_{fib}(0) = 0$,
 $s_{fib}(1) = 1$, $s_{fib}(2) = 1$, and so forth.
 
 \subsection{Streams as Lazy-Lists} \label{sec:stream}
 
-This subsection is to show users that are familiar with Haskell that streams
-function like lazy lists.
+This subsection is intended for users familiar with Haskell and illustrates that streams
+ are similar to  lazy lists.
 %
 For those that are not as familiar with Haskell this
 subsection can be omitted.
@@ -79,7 +79,7 @@ general-purpose higher-order functional language.
 
 \begin{example}
 We define the function {\tt even}, which given a stream of integers returns a
-boolean stream which is true whenever the input stream contains an even number,
+Boolean stream, which is true whenever the input stream contains an even number,
 as follows:
 %
 \begin{lstlisting}[language = Copilot, frame = single]
@@ -90,7 +90,7 @@ even x = x `mod` 2 == 0
 Applying {\tt even} on {\tt nats} (defined above) yields the sequence
 $\{T, F, T, F, T, F, \dots\}$.
 %
-This function should be familiar to the function shown in {\tt Spec.hs} from
+This function should be similar to the function shown in {\tt Spec.hs} from
 \hyperref[interpcompile]{Section 2.1}.
 \end{example}
 
@@ -113,8 +113,8 @@ operand, and {\tt c} and {\tt d} represent the real and imaginary part
 of the right operand.
 \end{example}
 
-Here we give you another specification \texttt{Streams.hs} found in the ./Examples directory
-that you are able to run in the interpreter to see how the operators work on the streams:
+The following  presents another specification \texttt{Streams.hs} found in the ./Examples directory
+that can be run in the interpreter to see how the operators work on the streams:
 
 \noindent
 %\begin{minipage}{0.3\textwidth}
@@ -135,12 +135,12 @@ following problem.
 
 
 {\tt Problem:} We have given you a specification with two streams in the
-./Examples.
+./Examples directory.
 %
 One stream is a stream of natural numbers and the other is a stream of purely
 even numbers.
 %
-Create a function that will check if a stream of numbers is even or not, we
+Create a function that will check if a stream of numbers is even or odd, we
 have given you the type specification.
 %
 Once you have created the function, you should be able to compile and interpret the
@@ -232,14 +232,14 @@ language.
 %
 
 \begin{description}
-  \item[Line 1-3] Copilot language standard include and remove 
-  items defined in the Copilot library from the prelude.
+  \item[Line 1-3] Copilot language standard is imported and
+  items defined in the Copilot library are removed from the prelude.
   \item[Line 5-6] Create a Fibonacci stream that we demonstrated in the last section.
   \item[Line 8-9] Delaying the Fibonacci stream by one value.
-  \item[Lines 11-12] Difference filter outputs the value of the Fibonacci stream subtracted by the delayed Fiboncahi stream. 
+  \item[Lines 11-12] Difference filter outputs the value of the Fibonacci stream subtracted by the delayed Fibonacci stream. 
   \item[Lines 14-15] Gain filter outputs the value of the Fibonacci stream and multiplies it by a constant.
-  \item[Lines 17-18] Two term average filter outputs the average of the Fibonacci stream subtracted by the delayed Fibonachi stream. 
-  \item[Lines 20-21] Central difference filter outputs the average of the Fibonacci stream subtracted by delaying the delayed Fibonachi stream. 
+  \item[Lines 17-18] Two term average filter outputs the average of the Fibonacci stream subtracted by the delayed Fibonacci stream. 
+  \item[Lines 20-21] Central difference filter outputs the average of the Fibonacci stream subtracted by delaying the delayed Fibonacci stream. 
   \item[Lines 23-42] Observers to show how the filters functionality and how they operate on the stream. 
 
 \end{description}
@@ -253,7 +253,7 @@ A \emph{stateful} function is a function which has an internal state, e.g. as a
 latch (as in electronic circuits) or a low/high-pass filter (as in a DSP).
 
 \begin{example} We consider a simple latch, as described in \cite{Farhat2004},
-with a single input and a boolean state.
+with a single input and a Boolean state.
 %
 A latch is a way of simulating memory in circuits by feeding back output gates
 as inputs.
@@ -296,11 +296,10 @@ $T$ & $T$ & $F$
 \lstinputlisting[language = Copilot, frame = single, numbers = left]{Examples/Latch.hs}
 
 \begin{description}
-  \item[Line 1-4] Copilot language standard include and remove 
-  items defined in the Copilot library from the prelude.
+  \item[Line 1-4] Copilot language standard is imported  and names defined in the Copilot library are removed from the prelude.
   \item[Line 5-9] This is a set of arbitrary functions to create streams of
   True/False outputs to demonstrate the latch.
-  \item[Lines 11-15] demonstrate the implementation of an if-then-else statement in copilot. In order to do if-then-else statements we have defined {\tt mux}.
+  \item[Lines 11-15] Demonstrates the implementation of an if-then-else statement in Copilot. Rather than the standard syntax for if-then-else statements, Copilot uses the {\tt mux} operator.
 \end{description}
 
 %
@@ -348,7 +347,7 @@ $T$ & $F$ & $\mathtt{cnt}_{i}+1$\\
 \end{center}
 \end{example}
 
-{\tt Problem:} Now that you have an understanding of how to implement if then
+{\tt Problem:} Now that you have an understanding of how to implement if-then-else
 operations on streams, attempt to write a specification for the example above.
 %
 We have started the specification for you in the ./Examples directory.
@@ -358,8 +357,8 @@ We have started the specification for you in the ./Examples directory.
 
 \subsection{Structs}
 When monitoring embedded systems the data that needs to be observed is often in a struct.
-Structs require special attention in Copilot, as we cannot magically
-import the definition of the struct in Copilot. In this section, we discuss the
+Structs require special attention in Copilot, as we cannot simply
+import the definition of a struct. In this section, we discuss the
 steps that need to be taken by following the code of \texttt{Struct.hs} in the
 \texttt{Examples} directory of the Copilot distribution, or the repository
 \footnote{\url{https://github.com/Copilot-Language/Copilot/blob/master/Examples/Struct.hs}}.
@@ -420,8 +419,8 @@ unquoted ones). The C names are only used by Copilot internally.
 \subsubsection*{Instance of \texttt{Struct}}
 Our next task is to inform Copilot about our new type, therefore we need to
 write an instance of the \texttt{Struct}-class. This class has the purpose of
-defining the datatype as a struct, it provides the code generator of Copilot the
-name of struct in C, and provides a function to translate the struct to a list
+defining the datatype as a struct, providing the code generator of Copilot the
+name of struct in C, and providing a function to translate the struct to a list
 of values:
 \begin{lstlisting}[language=Copilot]
 instance Struct Vec where
@@ -454,7 +453,7 @@ function, returning the type:
 instance Typed Vec where
   typeOf = Struct (Vec (Field 0) (Field 0))
 \end{lstlisting}
-For \texttt{Vec} this means we need to return something of the \texttt{Vec}
+For \texttt{Vec} this means we need to return a value of the \texttt{Vec}
 type wrapped in the \texttt{Struct} constructor. In this case it does not
 matter what the values of the fields are, we just need to return something of
 the correct type.
@@ -482,7 +481,7 @@ from the stream of vectors.
 
 \subsubsection*{Example code}
 \label{exm:struct}
-Once everything has been defined all there is, we can make streams of structs. The following
+Once the struct specification has been defined, we can make streams of structs. The following
 code has been taken from the \texttt{Struct.hs} example, and shows the basic
 usage of structs.
 %
@@ -553,13 +552,13 @@ used to monitor an executing program. The Copilot reification process
 generates a C monitor from a Copilot specification. The variables that
 are observed in the C code must be declared as \emph{external}
 variables in the monitor. The external variables have the same name as
-the variables being monitored in the C code are treated as shared
-memory. The interpreter is intended for exploring ideas and algorithms
+the variables being monitored in the C code.  The monitor accesses the C code 
+variable using shared memory. The interpreter is intended for exploring ideas and algorithms
 and is not intended to monitor executing  C
 programs. It may seem external variables would have no meaning if the
 monitor was run in the interpreter, but Copilot gives the user the
 ability to specify default stream values for an external variable that
-get used when the monitor interpreted.
+gets used when the monitor interpreted.
 
  A Copilot specification is \emph{open} if defined with external symbols in the
 sense that values must be provided externally at runtime.  To simplify writing
@@ -620,8 +619,7 @@ e0 = extern  "e0" (Just [2,4..])
 \noindent
 so that the symbol name and its environment can be shared between streams.
 
-Just like regular variables, arrays can be sampled as well. Copilot treats
-arrays the same way it treats scalars. 
+Like regular variables, arrays can be sampled.
 \begin{example}
 \label{exmp:pitot}
 Let's take the example where we

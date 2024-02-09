@@ -1,18 +1,17 @@
 \subsection{The Boyer-Moore Majority-Vote Algorithm}
 \label{subsec:boyer_moore}
 
-In this section we demonstrate how to use Haskell as an advanced macro language
-on top of Copilot by implementing an algorithm for solving the voting problem
-in Copilot.
+%In this section, we demonstrate how to use Haskell as an advanced macro language
+%on top of Copilot by implementing an algorithm for computing a majority vote. 
 
 Reliability in mission critical software is often improved by replicating
-the same computations on separate hardware and by doing a vote in the end
-based on the output of each system. The majority vote problem consists of
+the same computations on separate hardware and using the value computed by
+the majority of replicated units. The majority vote problem consists of
 determining if in a given list of votes there is a candidate that has more
 than half of the votes, and if so, of finding this candidate.
 
-The Boyer-Moore Majority Vote Algorithm \cite{MooreBoyer82,Hesselink2005} solves
-the problem in linear time and constant memory. It does so in two passes: The
+The Boyer-Moore Majority Vote Algorithm \cite{MooreBoyer82,Hesselink2005}
+computes the majority vote in linear time and constant memory. It does so in two passes: The
 first pass chooses a candidate; and the second pass asserts that the
 found candidate indeed holds a majority.
 
@@ -36,29 +35,32 @@ the second pass is needed to verify that the output of the first pass is valid.
 
 \lstinputlisting[language = Copilot, numbers = left]{Examples/MajVoteExample.hs}
 
-The first pass can be implemented
-in Haskell as shown in lines 2-13. The second pass, which
+The first pass can be implemented in Haskell as shown in lines 2-13. The second pass, which
 simply checks that a candidate has more than half of the votes, is
 straightforward to implement and is shown in lines 15-23.
 E.g. applying {\tt majorityPure} on the string {\tt AAACCBBCCCBCC} yields {\tt
   C}, which {\tt aMajorityPure} can confirm is in fact a majority.
-
- 
 \lstinputlisting[language = Copilot, numbers = left]{Examples/VotingImp.hs}
 
 When implementing the majority vote algorithm for Copilot, we can use reuse
-almost all of the code from the Haskell implementation. However, as functions
-in Copilot are macros that are expanded at compile time, care must
-be taken in order to avoid an explosion in the code size. Hence, instead of
-using Haskell's built-in \emph{let}-blocks, we use explicit sharing. The Copilot implementations
+almost all of the code from the Haskell implementation.
+%
+%However, as functions
+%in Copilot are macros that are expanded at compile time, care must
+%be taken in order to avoid an explosion in the code size. Hence, instead of
+%using Haskell's built-in \emph{let}-blocks, we use explicit sharing.
+The Copilot implementations
 of the first and the second pass as shown above. Comparing the Haskell implementation
-with the Copilot implementation, we see that the code is almost identical,
-except for the type signatures and the explicit sharing annotations.
+with the Copilot implementation, we see that the code is almost identical.
 
 
-The majority vote algorithm has been implemented into the Copilot libraries. This allows you, the user, to implement the majority vote functionality with a simple function call. An example of this is in the {\tt ./Examples} directory names {\tt MajVoteCopilot.hs} and is shown below.
+The majority vote algorithm has been implemented in the Copilot libraries. 
+Hence, users can implement the majority vote functionality with a simple function call. 
+An example application of this function can be found in the {\tt ./Examples} directory in the file  {\tt MajVoteCopilot.hs} and is shown below.
 
 
 \lstinputlisting[language = Copilot, numbers = left]{Examples/MajVoteCopilot.hs}
 
-In this example you can see that we pass a stream of booleans determinied by wether the number is divisible by 1, 2, 3, or 4. The output of {\tt majority} is the value that it has determined to be the majority. After a majority has been picked that majority is then passed through {\tt aMajority} to determine if there is actually a majority. From this example you can see that numbers like 2, 3, 9 and 10 did not have a majority because they had two trues and two falses.  
+ After a majority candidate has been computed,
+  the value is then passed through {\tt aMajority} to determine if it is actually a majority. 
+ In this example, the numbers 2, 3, 9 and 10 did not have a majority.  
